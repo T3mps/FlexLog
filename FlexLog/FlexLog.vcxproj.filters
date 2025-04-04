@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Format">
+      <UniqueIdentifier>{8E2041B3-7AC2-6B89-637D-7FDD4FBEF2D9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Format\Structured">
+      <UniqueIdentifier>{B2F03202-1E07-3198-677E-BCB9D3D30120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sink">
+      <UniqueIdentifier>{3A608C7C-2697-8D0D-CF83-7310BB99090F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Common.h" />
+    <ClInclude Include="src\Core\AtomicString.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\HazardPointer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\LoggerThreadPool.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\MessagePool.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\MessageQueue.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\RCUList.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Result.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\StringStorage.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Format.h">
+      <Filter>Format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\LogFormat.h">
+      <Filter>Format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\PatternFormatter.h">
+      <Filter>Format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\BaseStructuredFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\CloudWatchFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\ElasticsearchFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\GelfFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\JsonFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\LogstashFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\OpenTelemetryFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\SplunkFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\StructuredData.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\StructuredFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Format\Structured\XmlFormatter.h">
+      <Filter>Format\Structured</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\LogManager.h" />
+    <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\Logging.h" />
+    <ClInclude Include="src\LoggingService.h" />
+    <ClInclude Include="src\Message.h" />
+    <ClInclude Include="src\Platform.h" />
+    <ClInclude Include="src\Sink\ConsoleSink.h">
+      <Filter>Sink</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sink\FileSink.h">
+      <Filter>Sink</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sink\Sink.h">
+      <Filter>Sink</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\AtomicString.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\HazardPointer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\LoggerThreadPool.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\MessagePool.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\MessageQueue.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\StringStorage.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Format.cpp">
+      <Filter>Format</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\PatternFormatter.cpp">
+      <Filter>Format</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\BaseStructuredFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\CloudWatchFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\ElasticsearchFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\GelfFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\JsonFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\LogstashFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\OpenTelemetryFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\SplunkFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\StructuredData.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Format\Structured\XmlFormatter.cpp">
+      <Filter>Format\Structured</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LogManager.cpp" />
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Message.cpp" />
+    <ClCompile Include="src\Sink\ConsoleSink.cpp">
+      <Filter>Sink</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sink\FileSink.cpp">
+      <Filter>Sink</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sink\Sink.cpp">
+      <Filter>Sink</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{76288013-E207-FFAE-EB1F-8A85577E6510}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>FlexLog</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\FlexLog\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\FlexLog\</IntDir>
+    <TargetName>FlexLog</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\FlexLog\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\FlexLog\</IntDir>
+    <TargetName>FlexLog</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LOGGER_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LOGGER_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Common.h" />
+    <ClInclude Include="src\Core\AtomicString.h" />
+    <ClInclude Include="src\Core\HazardPointer.h" />
+    <ClInclude Include="src\Core\LoggerThreadPool.h" />
+    <ClInclude Include="src\Core\MessagePool.h" />
+    <ClInclude Include="src\Core\MessageQueue.h" />
+    <ClInclude Include="src\Core\RCUList.h" />
+    <ClInclude Include="src\Core\Result.h" />
+    <ClInclude Include="src\Core\StringStorage.h" />
+    <ClInclude Include="src\Format\Format.h" />
+    <ClInclude Include="src\Format\LogFormat.h" />
+    <ClInclude Include="src\Format\PatternFormatter.h" />
+    <ClInclude Include="src\Format\Structured\BaseStructuredFormatter.h" />
+    <ClInclude Include="src\Format\Structured\CloudWatchFormatter.h" />
+    <ClInclude Include="src\Format\Structured\ElasticsearchFormatter.h" />
+    <ClInclude Include="src\Format\Structured\GelfFormatter.h" />
+    <ClInclude Include="src\Format\Structured\JsonFormatter.h" />
+    <ClInclude Include="src\Format\Structured\LogstashFormatter.h" />
+    <ClInclude Include="src\Format\Structured\OpenTelemetryFormatter.h" />
+    <ClInclude Include="src\Format\Structured\SplunkFormatter.h" />
+    <ClInclude Include="src\Format\Structured\StructuredData.h" />
+    <ClInclude Include="src\Format\Structured\StructuredFormatter.h" />
+    <ClInclude Include="src\Format\Structured\XmlFormatter.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\LogManager.h" />
+    <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\Logging.h" />
+    <ClInclude Include="src\LoggingService.h" />
+    <ClInclude Include="src\Message.h" />
+    <ClInclude Include="src\Platform.h" />
+    <ClInclude Include="src\Sink\ConsoleSink.h" />
+    <ClInclude Include="src\Sink\FileSink.h" />
+    <ClInclude Include="src\Sink\Sink.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\AtomicString.cpp" />
+    <ClCompile Include="src\Core\HazardPointer.cpp" />
+    <ClCompile Include="src\Core\LoggerThreadPool.cpp" />
+    <ClCompile Include="src\Core\MessagePool.cpp" />
+    <ClCompile Include="src\Core\MessageQueue.cpp" />
+    <ClCompile Include="src\Core\StringStorage.cpp" />
+    <ClCompile Include="src\Format\Format.cpp" />
+    <ClCompile Include="src\Format\PatternFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\BaseStructuredFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\CloudWatchFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\ElasticsearchFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\GelfFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\JsonFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\LogstashFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\OpenTelemetryFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\SplunkFormatter.cpp" />
+    <ClCompile Include="src\Format\Structured\StructuredData.cpp" />
+    <ClCompile Include="src\Format\Structured\XmlFormatter.cpp" />
+    <ClCompile Include="src\LogManager.cpp" />
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Message.cpp" />
+    <ClCompile Include="src\Sink\ConsoleSink.cpp" />
+    <ClCompile Include="src\Sink\FileSink.cpp" />
+    <ClCompile Include="src\Sink\Sink.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
