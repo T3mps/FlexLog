@@ -1,154 +1,183 @@
-# FlexLog 🌐
+# FlexLog
 
-## Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/language-C%2B%2B20-blue.svg" alt="C++20">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg" alt="Cross-Platform">
+</p>
 
-FlexLog is a cutting-edge logging library designed to provide developers with unparalleled flexibility and performance in log management. Born from the demanding requirements of modern software development, FlexLog adapts to your project's unique logging needs while maintaining exceptional efficiency.
+FlexLog is a high-performance, thread-safe, and feature-rich logging library for modern C++ applications. Designed with flexibility and performance in mind, it supports structured logging formats, multiple output sinks, and advanced configuration options.
 
-### 🚀 Core Philosophy
+## ✨ Features
 
-At its heart, FlexLog is built on a simple yet powerful idea: logging should be as flexible as the applications it serves. Whether you're developing a high-performance game engine, a complex enterprise system, or a small utility application, FlexLog offers the tools to craft precisely the logging strategy you need.
+- **High Performance** - Lock-free message queues and thread pooling for minimal impact on application performance
+- **Thread Safety** - Concurrent logging from multiple threads with hazard pointers and atomic operations
+- **Structured Logging** - Support for JSON, XML, GELF, CloudWatch, LogStash, Elasticsearch, OpenTelemetry, and Splunk formats
+- **Multiple Sinks** - Console and file outputs with rotation support, with an extensible architecture for custom sinks
+- **C++20 Features** - Uses the latest C++ features including std::source_location and std::format
+- **Cross-Platform** - Works on Windows, Linux, and macOS
+- **Configuration** - Flexible configuration API with sensible defaults
+- **Memory Efficient** - Message pooling for reduced memory allocations
+- **File Rotation** - Size-based and time-based log file rotation
 
-### 🌟 Key Features
-
-#### Versatile Logging Formats
-FlexLog supports a wide array of logging formats, ensuring compatibility with various logging ecosystems:
-- Pattern-based logging
-- JSON
-- XML
-- CloudWatch
-- Elasticsearch
-- GELF (Graylog Extended Log Format)
-- Logstash
-- OpenTelemetry
-- Splunk
-
-#### Performance-Driven Architecture
-- Lock-free data structures
-- Thread-safe message processing
-- Efficient message pooling
-- Minimal runtime overhead
-- Compile-time log level optimization
-
-#### Adaptive Configuration
-- Dynamic log level management
-- Flexible sink configuration
-- Structured logging support
-- Custom log formatting
-- Runtime log reconfiguration
-
-#### Intelligent Logging Capabilities
-- Detailed source location tracking
-- Thread and process information capture
-- Rich structured data embedding
-- Compile-time log elimination for release builds
-
-## Installation
+## 📦 Installation
 
 ### Prerequisites
 
-- C++17 or later
-- CMake 3.12+
-- Supported Compilers:
-  - GCC 9+
-  - Clang 8+
-  - MSVC 19.20+
+- C++20 compatible compiler
+- [Premake5](https://premake.github.io/) (for building)
 
-## Quick Start Guide
+### Build from Source
 
-### Basic Logging
+```bash
+git clone https://github.com/yourusername/flexlog.git
+cd flexlog
+premake5 vs2022    # For Visual Studio 2022
+# OR
+premake5 gmake2    # For GNU Make
+# Then build using your generated build files
+```
+
+## 🚀 Quick Start
 
 ```cpp
-#include <FlexLog/Logger.h>
+#include "Logging.h"
 
 int main() {
-    // Initialize log manager
-    auto& logManager = Arcane::LogManager::GetInstance();
+    // Initialize the logging system
+    auto& logManager = FlexLog::LogManager::GetInstance();
     logManager.Initialize();
-
-    // Simple logging
-    ARC_INFO("Application started successfully");
-    ARC_ERROR("Connection failed: {}", errorDetails);
-
-    // Named logger for specific contexts
-    ARC_INFO_LOGGER("network", "Connection established");
-
+    
+    // Basic logging
+    FLOG_INFO("Hello, World!");
+    
+    // Formatted logging (using std::format)
+    FLOG_INFO("The answer is {}", 42);
+    
+    // Log with structured data
+    FlexLog::StructuredData data;
+    data.Add("user_id", 12345);
+    data.Add("action", "login");
+    FLOG_INFO("User login", data);
+    
+    // Clean shutdown
     logManager.Shutdown();
+    return 0;
 }
 ```
 
-### Advanced Configuration
+## 📝 Documentation
+
+### Basic Logging Macros
 
 ```cpp
-// Configure global log level
-logManager.SetDefaultLevel(Arcane::Level::Debug);
+FLOG_TRACE("Trace message");
+FLOG_DEBUG("Debug message");
+FLOG_INFO("Info message");
+FLOG_WARN("Warning message");
+FLOG_ERROR("Error message");
+FLOG_FATAL("Fatal message");
+```
 
-// Create a file sink with intelligent rotation
-auto fileSink = std::make_shared<Arcane::FileSink>(
-    Arcane::FileSink::Options()
-        .SetFilePath("app.log")
-        .EnableRotation()
-        .SetMaxFileSize(10 * 1024 * 1024)  // 10 MB max file size
-        .SetTimeRotation(Arcane::RotationTimeUnit::Day)
-);
-logManager.RegisterSink(fileSink);
+### Named Loggers
 
-// Configure JSON formatter with rich metadata
-auto jsonFormatter = std::make_shared<Arcane::JsonFormatter>(
-    Arcane::JsonFormatter::Options()
-        .SetPrettyPrint(true)
-        .SetApplication("MyApp", "production")
-        .SetProcessInfo(true)
-        .SetThreadId(true)
-);
-fileSink->SetFormatter(jsonFormatter);
+```cpp
+// Create or get a logger
+auto& logger = logManager.RegisterLogger("network");
+logger.SetLevel(FlexLog::Level::Debug);
+
+// Use the logger with macros
+FLOG_DEBUG_LOGGER("network", "Connection established with {}", "server-01");
+
+// Or directly
+logger.Debug("Connection established");
 ```
 
 ### Structured Logging
 
 ```cpp
-// Embed rich contextual information with structured logs
-StructuredData userData;
-userData.Add("user_id", 12345)
-        .Add("action", "login")
-        .Add("ip_address", "192.168.1.100")
-        .Add("timestamp", std::chrono::system_clock::now());
+FlexLog::StructuredData data;
+data.Add("latitude", 37.7749);
+data.Add("longitude", -122.4194);
+data.Add("timestamp", std::chrono::system_clock::now());
+data.Add("tags", std::vector<std::string>{"location", "gps"});
 
-ARC_INFO_WITH_DATA("User authentication attempt", userData);
+FLOG_INFO("Location update", data);
 ```
 
-## Performance Deep Dive
+### Custom Sinks
 
-FlexLog is engineered with performance at its core:
-- Lock-free concurrent message queues minimize synchronization overhead
-- Thread-local message caching reduces contention
-- Compile-time log level elimination removes unnecessary runtime checks
-- Efficient memory pooling reduces allocation pressure
-- Minimal abstraction penalty ensures near-zero logging overhead
+```cpp
+// File sink with rotation
+auto& logger = logManager.GetLogger("app");
+logger.EmplaceSink<FlexLog::FileSink>(FlexLog::FileSink::Options()
+    .SetFilePath("logs/app.log")
+    .EnableRotation(true)
+    .SetMaxFileSize(10 * 1024 * 1024)  // 10 MB
+    .SetTimeRotation(FlexLog::RotationTimeUnit::Day));
 
-## Platform Support
+// Console sink
+logger.EmplaceSink<FlexLog::ConsoleSink>();
+```
 
-Supported on:
-- Windows
-- Linux
-- macOS
-- Additional POSIX-compliant systems
+### Formatting Options
 
-## Contributing
+```cpp
+// Set JSON formatting for structured logs
+auto& format = logger.GetFormat();
+format.SetLogFormat(FlexLog::LogFormat::JSON);
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
-- Reporting issues
-- Suggesting enhancements
-- Submitting pull requests
+// Configure a formatter
+auto& jsonFormatter = format.GetJsonFormatter();
+jsonFormatter.GetOptions().SetPrettyPrint(true);
+```
 
-## License
+## ⚙️ Configuration
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
+FlexLog provides several configuration options:
 
-## Philosophy Behind FlexLog
+### Log Manager Configuration
 
-Logging should never be a burden on performance. It should seamlessly integrate into your workflow, provide insights when you need them, and stay out of your way when you don't. FlexLog is a commitment to powerful logging; a flexible tool in every developer's arsenal.
+```cpp
+auto& logManager = FlexLog::LogManager::GetInstance();
 
----
+// Set default log level
+logManager.SetDefaultLevel(FlexLog::Level::Debug);
 
-**Status**: Active Development 🚧
-Feedback, stars, and contributions are immensely appreciated! 🌟
+// Configure thread pool
+logManager.SetThreadPoolSize(4);
+
+// Set default logger name
+logManager.SetDefaultLoggerName("application");
+```
+
+### File Sink Options
+
+```cpp
+FlexLog::FileSink::Options options;
+options.SetFilePath("logs/app.log")
+       .SetCreateDir(true)
+       .SetAutoFlush(true)
+       .EnableRotation(true)
+       .SetRotationRule(FlexLog::RotationRule::SizeAndTime)
+       .SetMaxFileSize(10 * 1024 * 1024)  // 10 MB
+       .SetTimeRotation(FlexLog::RotationTimeUnit::Day)
+       .SetMaxFiles(7);
+```
+
+### Custom Pattern Formatting
+
+```cpp
+auto& format = logger.GetFormat();
+auto& patternFormatter = format.GetPatternFormatter();
+patternFormatter.SetPattern("[{timestamp}] [{level}] [{name}.{function}] - {message}");
+patternFormatter.SetTimeFormat("%Y-%m-%d %H:%M:%S.%f");
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
