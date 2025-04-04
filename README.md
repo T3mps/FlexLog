@@ -53,17 +53,6 @@ FlexLog supports a wide array of logging formats, ensuring compatibility with va
   - Clang 8+
   - MSVC 19.20+
 
-### Building from Source
-
-```bash
-git clone https://github.com/[YourUsername]/FlexLog.git
-cd FlexLog
-mkdir build && cd build
-cmake ..
-make
-make install
-```
-
 ## Quick Start Guide
 
 ### Basic Logging
