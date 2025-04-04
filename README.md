@@ -82,6 +82,8 @@ int main() {
 
     // Named logger for specific contexts
     ARC_INFO_LOGGER("network", "Connection established");
+
+    logManager.Shutdown();
 }
 ```
 
@@ -136,7 +138,7 @@ FlexLog is engineered with performance at its core:
 
 ## Platform Support
 
-Thoroughly tested and supported on:
+Supported on:
 - Windows
 - Linux
 - macOS
@@ -155,7 +157,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
 
 ## Philosophy Behind FlexLog
 
-Logging should never be a burden. It should seamlessly integrate into your workflow, provide insights when you need them, and stay out of your way when you don't. FlexLog is our commitment to making logging a powerful, flexible tool in every developer's arsenal.
+Logging should never be a burden on performance. It should seamlessly integrate into your workflow, provide insights when you need them, and stay out of your way when you don't. FlexLog is a commitment to powerful logging; a flexible tool in every developer's arsenal.
 
 ---
 
