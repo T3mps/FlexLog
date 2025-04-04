@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/language-C%2B%2B20-blue.svg" alt="C++20">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License">
+  <img src="https://img.shields.io/badge/license-MPL-green.svg" alt="MPL License">
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg" alt="Cross-Platform">
 </p>
 
@@ -176,7 +176,7 @@ patternFormatter.SetTimeFormat("%Y-%m-%d %H:%M:%S.%f");
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+FlexLog is distributed under the Mozilla Public License 2.0 (MPL 2.0)
 
 ## 🤝 Contributing
 
